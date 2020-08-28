@@ -14,6 +14,7 @@ import retrofit2.Response
 import com.camargo.aulafrag.R
 import com.camargo.aulafrag.adapters.ChapterAdapter
 import com.camargo.aulafrag.api.ChapterService
+import com.camargo.aulafrag.model.Book
 import com.camargo.aulafrag.model.Chapter
 import kotlinx.android.synthetic.main.fragment_info_book.*
 import retrofit2.Retrofit
@@ -32,7 +33,7 @@ class InfoBookFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bookId = arguments?.getInt("bookId")
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info_book, container, false)
     }
@@ -44,6 +45,13 @@ class InfoBookFragment : Fragment() {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
+
+        bookId = arguments?.getInt("bookId")
+        t_title.text = arguments?.getString("bookTitle")!!
+        t_author.text = arguments?.getString("bookAuthor")!!
+        t_publishing.text = arguments?.getString("bookPublishing")!!
+        t_year.text = arguments?.getInt("bookYear").toString()!!
+        t_edition.text = arguments?.getInt("bookEdition").toString()!!
 
         service.getById(bookId!!).enqueue(object : Callback<Chapter> {
             override fun onFailure(call: Call<Chapter>, t: Throwable) {
