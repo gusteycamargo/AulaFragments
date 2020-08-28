@@ -25,9 +25,6 @@ class BookFragment : Fragment(), BookListener {
         val view = inflater.inflate(R.layout.fragment_book, container, false)
         // Inflate the layout for this fragment
 
-        view.button.setOnClickListener { findNavController().navigate(R.id.navigateToInfoBooks) }
-
-
         return view
     }
 
@@ -40,7 +37,10 @@ class BookFragment : Fragment(), BookListener {
 
     }
 
-    override fun onItemClick(todo: Book) {
-        findNavController().navigate(R.id.navigateToInfoBooks)
+    override fun onItemClick(book: Book) {
+        val bundle = Bundle()
+        bundle.putInt("bookId", book.id!!)
+
+        findNavController().navigate(R.id.navigateToInfoBooks, bundle)
     }
 }

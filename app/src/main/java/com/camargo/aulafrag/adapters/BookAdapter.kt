@@ -50,12 +50,12 @@ class BookAdapter(
     override fun getItemCount() = bookList.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun fillView(todo: Book) {
-            itemView.textView1.text = Editable.Factory.getInstance().newEditable(todo.status + " " + todo.title)
-            itemView.text_view_2.text = Editable.Factory.getInstance().newEditable(todo.description)
+        fun fillView(book: Book) {
+            itemView.textView1.text = Editable.Factory.getInstance().newEditable(book.title)
+            itemView.text_view_2.text = Editable.Factory.getInstance().newEditable(book.author)
 
             itemView.setOnClickListener {
-                listener.onItemClick(todo)
+                listener.onItemClick(book)
             }
         }
     }

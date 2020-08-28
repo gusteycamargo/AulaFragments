@@ -5,20 +5,20 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface BookService {
-    @GET("todos")
+    @GET("books")
     fun getAll(): Call<List<Book>>
 
-    @GET("todos/{id}")
-    fun getAllByIds(@Path("id") ids: IntArray): Call<Book>
+    @GET("books/{id}")
+    fun getAllByIds(@Path("id") ids: Int): Call<Book>
 
     @Headers("Content-Type: application/json")
-    @POST("todos")
+    @POST("books")
     fun insert(@Body todo: Book): Call<Book>
 
     @Headers("Content-Type: application/json")
-    @PATCH("todos/{id}")
+    @PATCH("books/{id}")
     fun update(@Path("id") id: Int, @Body todo: Book): Call<Book>
 
-    @DELETE("todos/{id}")
+    @DELETE("books/{id}")
     fun delete(@Path("id") id: Int): Call<Void>
 }

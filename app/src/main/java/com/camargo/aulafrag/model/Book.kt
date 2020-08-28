@@ -1,9 +1,11 @@
 package com.camargo.aulafrag.model
 
 data class Book(
-    var status: String,
     var title: String,
-    var description: String) {
+    var author: String,
+    var publishingCompany: String,
+    var year: Int,
+    var edition: Int) {
 
     var id: Int? = null
 }
