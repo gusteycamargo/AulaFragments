@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/bookFragment2">
+
+    <fragment
+        android:id="@+id/bookFragment2"
+        android:name="com.camargo.aulafrag.fragments.BookFragment"
+        android:label="fragment_book"
+        tools:layout="@layout/fragment_book" >
+        <action
+            android:id="@+id/navigateToInfoBooks"
+            app:destination="@id/infoBookFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoBookFragment2"
+        android:name="com.camargo.aulafrag.fragments.InfoBookFragment"
+        android:label="fragment_info_book"
+        tools:layout="@layout/fragment_info_book" />
+</navigation>

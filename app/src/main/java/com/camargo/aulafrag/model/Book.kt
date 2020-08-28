@@ -1,6 +1,6 @@
 package com.camargo.aulafrag.model
 
-data class ToDo(
+data class Book(
     var status: String,
     var title: String,
     var description: String) {

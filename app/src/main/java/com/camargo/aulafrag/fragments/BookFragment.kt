@@ -1,62 +1,46 @@
 package com.camargo.aulafrag.fragments
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.camargo.aulafrag.R
-import com.camargo.aulafrag.adapters.ToDoAdapter
-import com.camargo.aulafrag.adapters.ToDoListener
-import com.camargo.aulafrag.model.ToDo
+import com.camargo.aulafrag.adapters.BookAdapter
+import com.camargo.aulafrag.adapters.BookListener
+import com.camargo.aulafrag.model.Book
 import kotlinx.android.synthetic.main.fragment_book.*
+import kotlinx.android.synthetic.main.fragment_book.view.*
 
-class BookFragment : Fragment(), ToDoListener {
-    private lateinit var adapter: ToDoAdapter
+class BookFragment : Fragment(), BookListener {
+    private lateinit var adapter: BookAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_book, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book, container, false)
+
+        view.button.setOnClickListener { findNavController().navigate(R.id.navigateToInfoBooks) }
+
+
+        return view
     }
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        adapter = ToDoAdapter(this)
+        adapter = BookAdapter(this)
 
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(activity)
-    }
-
-    override fun onBtSaveClick() {
 
     }
 
-    override fun onBtShareClick(todo: ToDo) {
-
-    }
-
-
-    override fun onBtDeleteClick(todo: ToDo) {
-
-    }
-
-    override fun onItemEditClick(todo: ToDo) {
-
-    }
-
-    override fun onItemClick(todo: ToDo) {
-
-    }
-
-    override fun onLongClick(todo: ToDo) {
-
+    override fun onItemClick(todo: Book) {
+        findNavController().navigate(R.id.navigateToInfoBooks)
     }
 }
