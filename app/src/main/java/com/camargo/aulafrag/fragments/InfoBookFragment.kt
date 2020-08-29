@@ -1,33 +1,19 @@
 package com.camargo.aulafrag.fragments
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import com.camargo.aulafrag.R
 import com.camargo.aulafrag.adapters.ChapterAdapter
-import com.camargo.aulafrag.api.ChapterService
 import com.camargo.aulafrag.model.Book
-import com.camargo.aulafrag.model.Chapter
 import kotlinx.android.synthetic.main.fragment_info_book.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class InfoBookFragment : Fragment() {
     private lateinit var adapter: ChapterAdapter
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("http://10.0.3.2:3000/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    private val service = retrofit.create(ChapterService::class.java)
-    private var bookId: Int? = 0
+    private lateinit var book: Book
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,23 +32,14 @@ class InfoBookFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
-        bookId = arguments?.getInt("bookId")
-        t_title.text = arguments?.getString("bookTitle")!!
-        t_author.text = arguments?.getString("bookAuthor")!!
-        t_publishing.text = arguments?.getString("bookPublishing")!!
-        t_year.text = arguments?.getInt("bookYear").toString()!!
-        t_edition.text = arguments?.getInt("bookEdition").toString()!!
+        book = arguments?.getSerializable("book") as Book
 
-        service.getById(bookId!!).enqueue(object : Callback<Chapter> {
-            override fun onFailure(call: Call<Chapter>, t: Throwable) {
-            }
-
-
-            override fun onResponse(call: Call<Chapter>, response: Response<Chapter>) {
-                adapter.updateList(response.body()!!.chapters.toMutableList())
-            }
-
-        })
+        t_title.text = book.title
+        t_author.text = book.author
+        t_publishing.text = book.publishingCompany
+        t_year.text = book.year.toString()
+        t_edition.text = book.edition.toString()
+        adapter.updateList(book.chapters.toMutableList())
 
     }
 }

@@ -1,18 +1,12 @@
 package com.camargo.aulafrag.adapters
 
 import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.camargo.aulafrag.R
-import com.camargo.aulafrag.api.ChapterService
-import com.camargo.aulafrag.model.Chapter
 import kotlinx.android.synthetic.main.item_chapters.view.*
-
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class ChapterAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

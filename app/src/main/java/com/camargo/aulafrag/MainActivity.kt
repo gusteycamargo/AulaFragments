@@ -10,16 +10,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        val bookFragment = BookFragment()
-//
-//        useFragment(bookFragment)
     }
-
-//    private fun useFragment(fragment: Fragment) {
-//        supportFragmentManager.beginTransaction().apply {
-//            replace(R.id.fragment, fragment)
-//            commit()
-//        }
-//    }
 }

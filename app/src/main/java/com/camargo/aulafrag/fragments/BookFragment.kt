@@ -39,12 +39,7 @@ class BookFragment : Fragment(), BookListener {
 
     override fun onItemClick(book: Book) {
         val bundle = Bundle()
-        bundle.putInt("bookId", book.id!!)
-        bundle.putString("bookTitle", book.title)
-        bundle.putString("bookAuthor", book.author)
-        bundle.putString("bookPublishing", book.publishingCompany)
-        bundle.putInt("bookYear", book.year)
-        bundle.putInt("bookEdition", book.edition)
+        bundle.putSerializable("book", book)
 
         findNavController().navigate(R.id.navigateToInfoBooks, bundle)
     }
